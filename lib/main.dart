@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // MultiProvider permite usar múltiples proveedores en la aplicación
     return MultiProvider(
       providers: [
+        // Proveedor para FavoritesProvider, gestiona el estado de los favoritos
         ChangeNotifierProvider(create: (context) => FavoritesProvider()),
       ],
       child: MaterialApp(

@@ -8,7 +8,9 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Accede al FavoritesProvider para obtener la lista de favoritos
     final favoritesProvider = context.watch<FavoritesProvider>();
+    // Almacena la lista de Pokémons favoritos
     final favoritePokemons = favoritesProvider.favorites;
 
     return Scaffold(
@@ -16,13 +18,17 @@ class FavoritesScreen extends StatelessWidget {
         title: const Text('Favorites'),
       ),
       body: ListView.builder(
+        // Define cuántos ítems tendrá la lista (longitud de la lista de favoritos)
         itemCount: favoritePokemons.length,
+        // Construye cada ítem de la lista
         itemBuilder: (context, index) {
+          // Obtiene el Pokémon correspondiente al índice actual
           final pokemon = favoritePokemons[index];
+          // Retorna un widget personalizado para mostrar el Pokémon en la lista
           return PokemonListItem(
             pokemon: pokemon,
             onFavoriteToggle: () {
-              // Actualiza la pantalla después de eliminar el Pokémon de favoritos
+              // Elimina el Pokémon de la lista de favoritos cuando se presiona el botón
               favoritesProvider.removeFavorite(pokemon);
             },
           );
